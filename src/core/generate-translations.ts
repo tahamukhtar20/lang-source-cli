@@ -149,60 +149,68 @@ class GenerateTranslations {
 
     logger.info(`Starting translation generation from (${this.filePath})`);
 
-    const translationPromises = languageList.map((lang) => {
-      return new Promise<void>(async (resolve, reject) => {
-        const filePath = path.join(this.filePath.slice(0, -7), `${lang}.json`);
-        const headers = {
-          'Content-Type': 'application/json',
-        };
-        const data = {
-          contents: [
-            {
-              parts: [
-                {
-                  text: this.generatePrompt(baseData, lang),
-                },
-              ],
-            },
-          ],
-          generationConfig: {
-            temperature: this.temperature,
-            maxOutputTokens: this.maxTokens,
+    const retryRequest = async (
+      lang: string,
+      maxRetries: number,
+    ): Promise<void> => {
+      let attempts = 0;
+      const filePath = path.join(this.filePath.slice(0, -7), `${lang}.json`);
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      const data = {
+        contents: [
+          {
+            parts: [
+              {
+                text: this.generatePrompt(baseData, lang),
+              },
+            ],
           },
-        };
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.apiKey}`;
-
+        ],
+        generationConfig: {
+          temperature: this.temperature,
+          maxOutputTokens: this.maxTokens,
+        },
+      };
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.apiKey}`;
+  
+      while (attempts <= maxRetries) {
         try {
-          const response = await axios
-            .post(url, data, { headers })
-            .catch((error) => {
-              if (error.response.status === 400) {
-                throw new Error('Invalid API Key.');
-              }
-            });
-          if (!response) {
-            throw new Error('Failed to generate translation.');
+          const response = await axios.post(url, data, { headers });
+  
+          if (!response || !response.data) {
+            throw new Error('Failed to generate translation: No response data.');
           }
+  
           const translations = this.extractJSON(
             response.data.candidates[0].content.parts[0].text.trim(),
           );
           fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
           logger.info(`${lang}.json generated successfully.`);
-          resolve();
+          return; // Exit the loop and function if successful
         } catch (error) {
-          if (error instanceof AxiosError) {
-            logger.error(
-              `Failed to generate ${lang}.json: ${error.message} - Response: ${JSON.stringify(error.response?.data)}`,
+          attempts++;
+          if (attempts <= maxRetries) {
+            logger.warn(
+              `Retrying (${attempts}/${maxRetries}) for ${lang}.json due to error: ${
+                (error as Error).message
+              }`,
             );
           } else {
             logger.error(
-              `Failed to generate ${lang}.json: ${(error as Error).message}`,
+              `Failed to generate ${lang}.json after ${maxRetries} attempts.`,
             );
+            throw error; // Throw error are `n` tries
           }
-          reject(error);
         }
-      });
+      }
+    };
+
+    const translationPromises = languageList.map((lang) => {
+      return retryRequest(lang, 3); // Retry up to 3 times
     });
+
     try {
       await Promise.all(translationPromises);
       logger.info('Translation complete.');
