@@ -1,0 +1,74 @@
+{
+  "name": "langsource-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for language support in development",
+  "main": "index.js",
+  "bin": {
+    "langsource": "dist/index.js"
+  },
+  "scripts": {
+    "lint": "eslint 'src/**/*.{js,ts}'",
+    "format": "prettier --write 'src/**/*.{js,ts}'",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langsource/langsource-cli.git"
+  },
+  "keywords": [
+    "language translation",
+    "cli tool",
+    "translation generator",
+    "json translator",
+    "i18n",
+    "l10n",
+    "llm",
+    "ai translation",
+    "api translation",
+    "translation automation",
+    "nodejs",
+    "typescript",
+    "npm",
+    "cli development",
+    "typescript cli",
+    "command-line interface",
+    "axios",
+    "dotenv",
+    "developer tools",
+    "automation",
+    "i18n tools",
+    "localization tools",
+    "developer productivity",
+    "language automation",
+    "multilingual development",
+    "translation management",
+    "translation",
+    "translation tools"
+  ],
+  "author": "Langsource",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/langsource/langsource-cli/issues"
+  },
+  "homepage": "https://github.com/langsource/langsource-cli#readme",
+  "dependencies": {
+    "@types/node": "^22.10.6",
+    "axios": "^1.7.9",
+    "commander": "^13.0.0",
+    "dotenv": "^16.4.7",
+    "inquirer": "^12.3.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.4.2"
+  }
+}
