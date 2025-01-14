@@ -34,7 +34,6 @@ import { logger } from '../utils';
  */
 class GenerateTranslations {
   static supportedLanguagesText = new Map([
-    ['ur', 'Urdu'],
     ['en', 'English'],
     ['ja', 'Japanese'],
     ['ko', 'Korean'],
@@ -46,6 +45,7 @@ class GenerateTranslations {
     ['es', 'Spanish'],
     ['it', 'Italian'],
     ['zh', 'Chinese'],
+    ['ur', 'Urdu'],
   ]);
   private supportedLanguages: string[];
   private apiKey: string;
