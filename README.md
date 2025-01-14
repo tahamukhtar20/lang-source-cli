@@ -9,7 +9,7 @@ lang-source-cli is an open-source tool designed to streamline language support b
 To install lang-source-cli globally, use the following command:
 
 ```bash
-npm install -g langsource
+npm install -g lang-source-cli
 ```
 
 ---
