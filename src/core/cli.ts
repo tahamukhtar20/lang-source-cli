@@ -110,7 +110,7 @@ class LangsourceCLI {
    * @returns {string} The LLM API key entered by the user.
    */
   private async getLLMKey(): Promise<void> {
-    if (process.env.LLM_KEY) {
+    if (process.env.LANGSOURCE_API_KEY) {
       const answer = await inquirer.prompt([
         {
           type: 'confirm',
@@ -167,7 +167,7 @@ class LangsourceCLI {
     if (!fs.existsSync(envFilePath)) {
       fs.writeFileSync(envFilePath, '');
     }
-    fs.writeFileSync(envFilePath, `LLM_KEY=${answers.key}`);
+    fs.writeFileSync(envFilePath, `LANGSOURCE_API_KEY=${answers.key}`);
     logger.info('API Key Added.');
   }
 

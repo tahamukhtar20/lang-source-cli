@@ -27,6 +27,7 @@ import fs from 'fs';
 import path from 'path';
 import axios, { AxiosError } from 'axios';
 import { logger } from '../utils';
+import { exit } from 'process';
 
 /**
  * @class GenerateTranslations
@@ -66,11 +67,12 @@ class GenerateTranslations {
     );
     this.maxTokens = 3000;
     this.temperature = 0.5;
-    this.apiKey = process.env.LLM_KEY || '';
+    this.apiKey = process.env.LANGSOURCE_API_KEY || '';
     if (!this.apiKey) {
-      throw new Error(
-        'Missing API key. Please set the LLM_KEY environment variable.',
+      logger.error(
+        'Missing API key. Please set the LANGSOURCE_API_KEY environment variable.',
       );
+      exit()
     }
   }
 
@@ -174,15 +176,17 @@ class GenerateTranslations {
         },
       };
       const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${this.apiKey}`;
-  
+
       while (attempts <= maxRetries) {
         try {
           const response = await axios.post(url, data, { headers });
-  
+
           if (!response || !response.data) {
-            throw new Error('Failed to generate translation: No response data.');
+            throw new Error(
+              'Failed to generate translation: No response data.',
+            );
           }
-  
+
           const translations = this.extractJSON(
             response.data.candidates[0].content.parts[0].text.trim(),
           );
