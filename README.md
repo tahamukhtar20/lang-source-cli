@@ -30,6 +30,8 @@ or
 langsource g
 ```
 
+Note: Make sure that the file name is not longer than 2 characters, for example: `en.json`
+
 You will be guided through the process with a series of prompts:
 
 1. Choose options for your project:
