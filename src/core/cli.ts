@@ -30,6 +30,7 @@ import { Command } from 'commander';
 import { logger } from '../utils';
 import axios from 'axios';
 import path from 'path';
+import figlet from 'figlet';
 
 /**
  * CLI for Langsource to handle translation generation.
@@ -186,6 +187,10 @@ class LangsourceCLI {
         .description('Generate translations for supported languages')
         .alias('g')
         .action(async () => {
+          console.log(figlet.textSync('langsource', {
+            font: 'Swamp Land',
+            horizontalLayout: 'full'
+          }));
           await this.getLLMKey();
           const languages = await this.selectLanguages();
           const path = await this.getPath();
