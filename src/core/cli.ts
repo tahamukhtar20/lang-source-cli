@@ -23,7 +23,6 @@
  * SOFTWARE.
 */
 
-
 import { GenerateTranslations } from './generate-translations';
 import inquirer from 'inquirer';
 import fs from 'fs';

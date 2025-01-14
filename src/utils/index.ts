@@ -23,5 +23,4 @@
  * SOFTWARE.
 */
 
-
 export * from './logger';

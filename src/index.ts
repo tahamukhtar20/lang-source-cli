@@ -26,6 +26,9 @@
 import { LangsourceCLI } from './core';
 import dotenv from 'dotenv';
 
+/**
+ * Main function to start the Langsource CLI.
+ */
 async function main() {
   try {
     dotenv.config();
