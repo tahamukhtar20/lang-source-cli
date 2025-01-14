@@ -1,5 +1,5 @@
 {
-  "name": "langsource-cli",
+  "name": "lang-source-cli",
   "version": "1.0.0",
   "description": "CLI tool for language support in development",
   "main": "index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langsource/langsource-cli.git"
+    "url": "git+https://github.com/lang-source/lang-source-cli.git"
   },
   "keywords": [
     "language translation",
@@ -46,13 +46,13 @@
     "translation",
     "translation tools"
   ],
-  "author": "Langsource",
+  "author": "lang-source",
   "license": "MIT",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/langsource/langsource-cli/issues"
+    "url": "https://github.com/lang-source/lang-source-cli/issues"
   },
-  "homepage": "https://github.com/langsource/langsource-cli#readme",
+  "homepage": "https://github.com/lang-source/lang-source-cli#readme",
   "dependencies": {
     "@types/node": "^22.10.6",
     "axios": "^1.7.9",

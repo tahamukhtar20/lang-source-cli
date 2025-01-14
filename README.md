@@ -1,12 +1,12 @@
-# Langsource-CLI
+# lang-source-cli
 
-Langsource-CLI is an open-source tool designed to streamline language support by leveraging AI for development. Under active development, Langsource-CLI currently offers a powerful feature to translate i18n dictionaries into multiple languages with a simple command.
+lang-source-cli is an open-source tool designed to streamline language support by leveraging AI for development. Under active development, lang-source-cli currently offers a powerful feature to translate i18n dictionaries into multiple languages with a simple command.
 
 ---
 
 ## Installation
 
-To install Langsource-CLI globally, use the following command:
+To install lang-source-cli globally, use the following command:
 
 ```bash
 npm install -g langsource
@@ -42,7 +42,7 @@ You will be guided through the process with a series of prompts:
 
 ### Supported Languages
 
-Langsource-CLI supports the following languages by default:
+lang-source-cli supports the following languages by default:
 
 - English (`en`)
 - Japanese (`ja`)
@@ -57,7 +57,7 @@ Langsource-CLI supports the following languages by default:
 - Chinese (`zh`)
 - Urdu (`ur`)
 
-To request support for additional languages, please [create an issue](https://github.com/langsource/langsource-cli/issues).
+To request support for additional languages, please [create an issue](https://github.com/lang-source/lang-source-cli/issues).
 
 ---
 
@@ -72,8 +72,8 @@ To request support for additional languages, please [create an issue](https://gi
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/langsource/langsource-cli.git
-   cd langsource-cli
+   git clone https://github.com/lang-source/lang-source-cli.git
+   cd lang-source-cli
    ```
 
 2. Install dependencies:
@@ -102,10 +102,10 @@ We welcome contributions from the community! To get started, please read our [CO
 
 ## License
 
-Langsource-CLI is licensed under the MIT License. Please look at the [LICENSE](./LICENSE) file for full details.
+lang-source-cli is licensed under the MIT License. Please look at the [LICENSE](./LICENSE) file for full details.
 
 ---
 
 ## Support
 
-For any questions, issues, or feature requests, feel free to [open an issue](https://github.com/langsource/langsource-cli/issues) on GitHub.
+For any questions, issues, or feature requests, feel free to [open an issue](https://github.com/lang-source/lang-source-cli/issues) on GitHub.

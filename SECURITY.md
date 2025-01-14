@@ -12,7 +12,7 @@ be sure it can be reproduced in the supported version.
 ## Reporting a Vulnerability
 
 If you have information about a security issue or vulnerability in the product, please
-send an e-mail to [tahamukhtar20@gmail.com](mailto:tahamukhtar20+langsource@gmail.com).
+send an e-mail to [tahamukhtar20@gmail.com](mailto:tahamukhtar20+lang-source@gmail.com).
 
 Please provide as much information as possible, including:
 

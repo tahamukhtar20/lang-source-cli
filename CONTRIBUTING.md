@@ -1,13 +1,13 @@
-# Contributing to Langsource-CLI
+# Contributing to lang-source-cli
 
-Thank you for considering contributing to Langsource-CLI! We welcome all contributions, whether they’re related to code, documentation, or feature suggestions. Follow these steps to get started:
+Thank you for considering contributing to lang-source-cli! We welcome all contributions, whether they’re related to code, documentation, or feature suggestions. Follow these steps to get started:
 
 ---
 
 ## How to Contribute
 
 ### 1. Reporting Bugs
-- Search [existing issues](https://github.com/langsource/langsource-cli/issues) to avoid duplicates.
+- Search [existing issues](https://github.com/lang-source/lang-source-cli/issues) to avoid duplicates.
 - Create a new issue and provide:
   - A clear title.
   - Steps to reproduce the issue.
@@ -15,13 +15,13 @@ Thank you for considering contributing to Langsource-CLI! We welcome all contrib
   - Relevant logs or screenshots, if applicable.
 
 ### 2. Suggesting Features
-- Open a new [feature request issue](https://github.com/langsource/langsource-cli/issues).
+- Open a new [feature request issue](https://github.com/lang-source/lang-source-cli/issues).
 - Provide a detailed description of the feature and its benefits.
 
 ### 3. Contributing Code
 - Fork the repository and clone it locally:
   ```bash
-  git clone https://github.com/your-username/langsource-cli.git
+  git clone https://github.com/your-username/lang-source-cli.git
   ```
 - Create a new branch for your changes:
   ```bash
@@ -35,7 +35,7 @@ Thank you for considering contributing to Langsource-CLI! We welcome all contrib
   ```bash
   git push origin feature/your-feature-name
   ```
-- Open a pull request on the [main repository](https://github.com/langsource/langsource-cli/pulls).
+- Open a pull request on the [main repository](https://github.com/lang-source/lang-source-cli/pulls).
 
 ---
 
