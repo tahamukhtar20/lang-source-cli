@@ -25,7 +25,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { logger } from '../utils';
 import { exit } from 'process';
 
@@ -34,7 +34,7 @@ import { exit } from 'process';
  * @description This class generates translations for supported languages using the OpenAI Language Model API.
  */
 class GenerateTranslations {
-  static supportedLanguagesText = new Map([
+  public static readonly supportedLanguagesText = new Map([
     ['en', 'English'],
     ['ja', 'Japanese'],
     ['ko', 'Korean'],
@@ -48,10 +48,10 @@ class GenerateTranslations {
     ['zh', 'Chinese'],
     ['ur', 'Urdu'],
   ]);
-  private supportedLanguages: string[];
-  private apiKey: string;
-  private maxTokens: number;
-  private temperature: number;
+  private readonly apiKey: string;
+  private readonly maxTokens: number;
+  private readonly temperature: number;
+  private readonly supportedLanguages: string[];
   private filePath: string;
 
   /**
@@ -72,7 +72,7 @@ class GenerateTranslations {
       logger.error(
         'Missing API key. Please set the LANGSOURCE_API_KEY environment variable.',
       );
-      exit()
+      exit();
     }
   }
 
@@ -87,7 +87,7 @@ class GenerateTranslations {
     targetLang: string,
   ): string {
     const targetLangText =
-      GenerateTranslations.supportedLanguagesText.get(targetLang) || targetLang;
+      GenerateTranslations.supportedLanguagesText.get(targetLang) ?? targetLang;
     return `I will give you a JSON file, and without changing it's keys 
         I want you to generate the translation of the values of that JSON 
         in ${targetLangText}, don't break the format and just reply the JSON 
@@ -192,7 +192,7 @@ class GenerateTranslations {
           );
           fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
           logger.info(`${lang}.json generated successfully.`);
-          return; // Exit the loop and function if successful
+          return;
         } catch (error) {
           attempts++;
           if (attempts <= maxRetries) {
@@ -205,21 +205,24 @@ class GenerateTranslations {
             logger.error(
               `Failed to generate ${lang}.json after ${maxRetries} attempts.`,
             );
-            throw error; // Throw error are `n` tries
+            throw error;
           }
         }
       }
     };
 
     const translationPromises = languageList.map((lang) => {
-      return retryRequest(lang, 3); // Retry up to 3 times
+      return retryRequest(lang, 3);
     });
 
     try {
       await Promise.all(translationPromises);
       logger.info('Translation complete.');
     } catch (error) {
-      logger.error('Translation generation failed for some or all languages.');
+      logger.error(
+        'Translation generation failed for some or all languages:',
+        error,
+      );
     }
   }
 }

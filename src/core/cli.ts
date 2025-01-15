@@ -39,8 +39,8 @@ import figlet from 'figlet';
  * @description This class sets up and manages the CLI tool for generating translations.
  */
 class LangsourceCLI {
-  private languages: Map<string, string>;
-  private process: Command;
+  private readonly languages: Map<string, string>;
+  private readonly process: Command;
 
   /**
    * Constructs a new instance of the LangsourceCLI class.
@@ -177,9 +177,11 @@ class LangsourceCLI {
   public async start(): Promise<void> {
     try {
       this.process
-        .name('Langsource CLI')
-        .version('1.0.0')
-        .description('CLI tool for language support in development')
+        .name('lang-source-cli')
+        .version('1.0.0-beta')
+        .description(
+          'lang-source-cli is an AI-powered tool that simplifies multilingual support by automating i18n, designed to enhance efficiency in globalized development projects.',
+        )
         .usage('<command> [options]');
 
       this.process
@@ -187,10 +189,12 @@ class LangsourceCLI {
         .description('Generate translations for supported languages')
         .alias('g')
         .action(async () => {
-          console.log(figlet.textSync('langsource', {
-            font: 'Swamp Land',
-            horizontalLayout: 'full'
-          }));
+          console.log(
+            figlet.textSync('langsource', {
+              font: 'Swamp Land',
+              horizontalLayout: 'full',
+            }),
+          );
           await this.getLLMKey();
           const languages = await this.selectLanguages();
           const path = await this.getPath();

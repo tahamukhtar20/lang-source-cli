@@ -63,6 +63,12 @@ To request support for additional languages, please [create an issue](https://gi
 
 ---
 
+## Contributing
+
+We welcome contributions from the community! To get started, please read our [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on submitting pull requests and reporting issues.
+
+---
+
 ## Development
 
 ### Prerequisites
@@ -93,12 +99,6 @@ To request support for additional languages, please [create an issue](https://gi
    ```bash
    npm install -g .
    ```
-
----
-
-## Contributing
-
-We welcome contributions from the community! To get started, please read our [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on submitting pull requests and reporting issues.
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "name": "lang-source-cli",
-  "version": "1.0.2",
-  "description": "CLI tool for language support in development",
+  "version": "1.0.0-beta",
+  "description": "lang-source-cli is an AI-powered tool that simplifies multilingual support by automating i18n, designed to enhance efficiency in globalized development projects.",
   "main": "index.js",
   "bin": {
     "langsource": "dist/index.js"
@@ -10,7 +10,18 @@
     "lint": "eslint 'src/**/*.{js,ts}'",
     "format": "prettier --write 'src/**/*.{js,ts}'",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint",
+      "npm run format"
+    ],
+    "*.js": [
+      "npm run lint",
+      "npm run format"
+    ]
   },
   "repository": {
     "type": "git",
@@ -66,11 +77,16 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.18.0",
     "@typescript-eslint/eslint-plugin": "^8.20.0",
     "@typescript-eslint/parser": "^8.20.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "globals": "^15.14.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.3.0",
     "prettier": "^3.4.2"
   }
 }
