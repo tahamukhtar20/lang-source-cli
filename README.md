@@ -1,5 +1,10 @@
 # lang-source-cli
 
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/lang-source/lang-source-cli/releases)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/lang-source-cli.svg)](https://www.npmjs.com/package/lang-source-cli)
+[![npm downloads](https://img.shields.io/npm/dm/lang-source-cli.svg)](https://www.npmjs.com/package/lang-source-cli)
+
 lang-source-cli is an open-source tool designed to streamline language support by leveraging AI for development. Under active development, lang-source-cli currently offers a powerful feature to translate i18n dictionaries into multiple languages with a simple command.
 
 ---
