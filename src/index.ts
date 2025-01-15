@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-
 /**
  * @license MIT
  *
@@ -32,15 +31,19 @@ import dotenv from 'dotenv';
  * Main function to start the Langsource CLI.
  */
 async function main() {
-  try {
-    dotenv.config();
-    const cli = new LangsourceCLI();
-    await cli.start();
-  } catch (err) {
-    throw err;
-  }
+  dotenv.config();
+  const cli = new LangsourceCLI();
+  await cli.start();
 }
 
 main().catch((err: Error) => {
   console.error(err.message);
 });
+
+function moduleExport() {
+  console.log(
+    'To use this module, install it globally using npm and run the command `langsource`',
+  );
+}
+
+export default moduleExport;
