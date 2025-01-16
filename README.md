@@ -7,7 +7,6 @@
 ### AI-Powered Internationalization Made Simple
 <sub>Transform your development process with automated, accurate translations for your applications</sub>
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)](https://github.com/lang-source/lang-source-cli/releases)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 [![npm version](https://img.shields.io/npm/v/lang-source-cli.svg?style=for-the-badge)](https://www.npmjs.com/package/lang-source-cli)
 [![npm downloads](https://img.shields.io/npm/dm/lang-source-cli.svg?style=for-the-badge)](https://www.npmjs.com/package/lang-source-cli)
