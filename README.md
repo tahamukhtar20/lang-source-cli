@@ -1,118 +1,132 @@
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/4d865555-44d0-4238-b1d6-2ef7ddc8a3da" alt="lang-source-cli Logo" width="200"/>
+
 # lang-source-cli
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/lang-source/lang-source-cli/releases)
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![npm version](https://img.shields.io/npm/v/lang-source-cli.svg)](https://www.npmjs.com/package/lang-source-cli)
-[![npm downloads](https://img.shields.io/npm/dm/lang-source-cli.svg)](https://www.npmjs.com/package/lang-source-cli)
+### AI-Powered Internationalization Made Simple
+<sub>Transform your development process with automated, accurate translations for your applications</sub>
 
-lang-source-cli is an open-source tool designed to streamline language support by leveraging AI for development. Under active development, lang-source-cli currently offers a powerful feature to translate i18n dictionaries into multiple languages with a simple command.
+[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)](https://github.com/lang-source/lang-source-cli/releases)
+[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/lang-source-cli.svg?style=for-the-badge)](https://www.npmjs.com/package/lang-source-cli)
+[![npm downloads](https://img.shields.io/npm/dm/lang-source-cli.svg?style=for-the-badge)](https://www.npmjs.com/package/lang-source-cli)
+
+</div>
 
 ---
 
-## Installation
+## ✨ Features
 
-To install lang-source-cli globally, use the following command:
+- 🤖 AI-powered translation engine
+- 🚀 Simple command-line interface
+- 🔄 Bulk translation processing
+- ⚡ Fast and efficient processing
+- 🔍 Intelligent context preservation
+
+## 🚀 Installation
+
+Install lang-source-cli globally with npm:
 
 ```bash
 npm install -g lang-source-cli
 ```
 
----
-
-## Usage
+## 🛠️ Usage
 
 ### Generate Translations
 
-Run the following command to generate translations:
+Start the translation process with a simple command:
 
 ```bash
-langsource generate
+langsource generate  # Full command
+# or
+langsource g        # Short version
 ```
 
-or
+> **Important**: File names should be two characters long (e.g., `en.json`)
 
-```bash
-langsource g
-```
+### Interactive Workflow
 
-Note: Make sure that the file name is not longer than 2 characters, for example: `en.json`
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/709c57d4-8c59-4164-b1d5-be27f2af7772" alt="Option Selection" width="600"/>
+  <p><em>Step 1: Select your project options</em></p>
+</div>
 
-You will be guided through the process with a series of prompts:
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/533454af-1241-4ab8-b176-9aecf7ed8c75" alt="Path Input" width="600"/>
+  <p><em>Step 2: Provide your reference file path</em></p>
+</div>
 
-1. Choose options for your project:
-   ![Option Selection](https://github.com/user-attachments/assets/709c57d4-8c59-4164-b1d5-be27f2af7772)
+## 🌐 Supported Languages
 
-2. Provide the path to your reference file and press enter:
-   ![Path Input](https://github.com/user-attachments/assets/533454af-1241-4ab8-b176-9aecf7ed8c75)
+| Language    | Code | Status |
+|------------|------|---------|
+| English    | `en` | ✅ |
+| Japanese   | `ja` | ✅ |
+| Korean     | `ko` | ✅ |
+| Russian    | `ru` | ✅ |
+| Portuguese | `pt` | ✅ |
+| Arabic     | `ar` | ✅ |
+| German     | `de` | ✅ |
+| French     | `fr` | ✅ |
+| Spanish    | `es` | ✅ |
+| Italian    | `it` | ✅ |
+| Chinese    | `zh` | ✅ |
+| Urdu       | `ur` | ✅ |
 
----
+> 💡 Need more languages? [Request a language](https://github.com/lang-source/lang-source-cli/issues)
 
-### Supported Languages
-
-lang-source-cli supports the following languages by default:
-
-- English (`en`)
-- Japanese (`ja`)
-- Korean (`ko`)
-- Russian (`ru`)
-- Portuguese (`pt`)
-- Arabic (`ar`)
-- German (`de`)
-- French (`fr`)
-- Spanish (`es`)
-- Italian (`it`)
-- Chinese (`zh`)
-- Urdu (`ur`)
-
-To request support for additional languages, please [create an issue](https://github.com/lang-source/lang-source-cli/issues).
-
----
-
-## Contributing
-
-We welcome contributions from the community! To get started, please read our [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on submitting pull requests and reporting issues.
-
----
-
-## Development
+## 💻 Development
 
 ### Prerequisites
 
-- **Node.js**: Version 14.0.0 or higher  
-- **npm**: Version 7.0.0 or higher  
+- **Node.js** `>= 14.0.0` 
+- **npm** `>= 7.0.0`
 
-### Getting Started
+### Local Setup
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/lang-source/lang-source-cli.git
-   cd lang-source-cli
-   ```
+1️⃣ **Clone the repository**
+```bash
+git clone https://github.com/lang-source/lang-source-cli.git
+cd lang-source-cli
+```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+2️⃣ **Install dependencies**
+```bash
+npm install
+```
 
-3. Build and run locally:
-   ```bash
-   npm run build
-   npm run start
-   ```
+3️⃣ **Build and run**
+```bash
+npm run build
+npm run start
+```
 
-4. To test the CLI locally, install it globally:
-   ```bash
-   npm install -g .
-   ```
+4️⃣ **Local CLI installation**
+```bash
+npm install -g .
+```
 
----
+## 🤝 Contributing
 
-## License
+We love your input! Check out our [Contributing Guidelines](./CONTRIBUTING.md) to get started.
 
-lang-source-cli is licensed under the MIT License. Please look at the [LICENSE](./LICENSE) file for full details.
+Ways to contribute:
+- 🐛 Report bugs
+- 💡 Propose new features
+- 📖 Improve documentation
+- 💻 Submit pull requests
 
----
+## 📄 License
 
-## Support
+Copyright © 2025 lang-source-cli
 
-For any questions, issues, or feature requests, feel free to [open an issue](https://github.com/lang-source/lang-source-cli/issues) on GitHub.
+Released under the [MIT License](./LICENSE).
+
+## 💪 Support
+
+Need help? We've got you covered!
+
+- 📫 [Open an issue](https://github.com/lang-source/lang-source-cli/issues)
+- 📧 [Email support](mailto:tahamukhtar20+langsource@gmail.com)
