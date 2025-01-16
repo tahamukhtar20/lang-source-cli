@@ -15,7 +15,6 @@
 </div>
 
 ---
-
 ## ✨ Features
 
 - 🤖 AI-powered translation engine
@@ -48,15 +47,7 @@ langsource g        # Short version
 
 ### Interactive Workflow
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/709c57d4-8c59-4164-b1d5-be27f2af7772" alt="Option Selection" width="600"/>
-  <p><em>Step 1: Select your project options</em></p>
-</div>
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/533454af-1241-4ab8-b176-9aecf7ed8c75" alt="Path Input" width="600"/>
-  <p><em>Step 2: Provide your reference file path</em></p>
-</div>
+<img src="https://github.com/user-attachments/assets/23430b8a-784d-46c0-89af-c51ed5e4a3cf" alt="Option Selection" width="600"/>
 
 ## 🌐 Supported Languages
 
