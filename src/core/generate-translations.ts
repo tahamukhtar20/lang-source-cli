@@ -27,7 +27,6 @@ import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
 import { logger } from '../utils';
-import { exit } from 'process';
 
 /**
  * @class GenerateTranslations
@@ -57,7 +56,6 @@ class GenerateTranslations {
   /**
    * Constructs a new instance of the GenerateTranslations class.
    * @param {string} filePath - The folder containing the translation files.
-   * @param {string} currentLang - The current language to use as the base for translations.
    * @throws {Error} If the API key is missing.
    */
   constructor(filePath: string) {
@@ -66,13 +64,12 @@ class GenerateTranslations {
       GenerateTranslations.supportedLanguagesText.keys(),
     );
     this.maxTokens = 3000;
-    this.temperature = 0.5;
+    this.temperature = 0.4;
     this.apiKey = process.env.LANGSOURCE_API_KEY || '';
     if (!this.apiKey) {
-      logger.error(
+      throw new Error(
         'Missing API key. Please set the LANGSOURCE_API_KEY environment variable.',
       );
-      exit();
     }
   }
 
@@ -88,27 +85,41 @@ class GenerateTranslations {
   ): string {
     const targetLangText =
       GenerateTranslations.supportedLanguagesText.get(targetLang) ?? targetLang;
-    return `I will give you a JSON file, and without changing it's keys 
-        I want you to generate the translation of the values of that JSON 
-        in ${targetLangText}, don't break the format and just reply the JSON 
-        directly without any other text, incase the language to be translated 
-        into the language of the JSON are the same, return the original JSON,
-        if you come across any URL or code or names or path names or any other
-        text that should not be translated, please don't translate them.
 
-        Here is the format of your reply:\n
+    const promptBuilder = new Array<string>();
+    promptBuilder.push(
+      'Your task is to translate the values of a given JSON file into the specified target language, without changing the structure or keys of the JSON. Follow these guidelines:',
+    );
+    promptBuilder.push(
+      '1. If the target language is the same as the current language of the JSON values, return the original JSON.',
+    );
+    promptBuilder.push(
+      '2. Do not translate URLs, code, names, path names, or any other text that should not be translated.',
+    );
+    promptBuilder.push(
+      '3. Maintain the original JSON format without any additional text.',
+    );
+    promptBuilder.push(
+      '4. If a value is not translatable or should not be translated, you can leave it as is.',
+    );
+    promptBuilder.push(
+      `Here is the JSON file and you need to translate it into ${targetLangText}:`,
+    );
+    promptBuilder.push(`"""`);
+    promptBuilder.push(`${JSON.stringify(baseData, null, 2)}`);
+    promptBuilder.push(`"""`);
+    promptBuilder.push(
+      'Your output should adhere to the format below without any additional text:',
+    );
+    promptBuilder.push(`{`);
+    promptBuilder.push(`  "key1": "translated_value1",`);
+    promptBuilder.push(`  "key2": "translated_value2",`);
+    promptBuilder.push(`  "key3": {`);
+    promptBuilder.push(`    "key4": "translated_value3"`);
+    promptBuilder.push(`  }`);
+    promptBuilder.push(`}`);
 
-        \n
-        {
-            "key1": "translated_value1",
-            "key2": "translated_value2",
-            "key3": {
-                "key4": "translated_value3"
-            }
-        }
-        \n
-        Here is the JSON file which you will be translating:\n
-        \n${JSON.stringify(baseData, null, 2)}`;
+    return promptBuilder.join('\n');
   }
 
   /**
@@ -131,13 +142,6 @@ class GenerateTranslations {
     languageList: string[] = this.supportedLanguages,
   ): Promise<void> {
     const baseFilePath = path.join(this.filePath);
-
-    if (!fs.existsSync(baseFilePath)) {
-      throw new Error(
-        `Base translation file (${this.filePath}) not found in the specified folder.`,
-      );
-    }
-
     const baseContent = fs.readFileSync(baseFilePath, 'utf-8');
     let baseData: Record<string, string>;
 
@@ -156,7 +160,6 @@ class GenerateTranslations {
       maxRetries: number,
     ): Promise<void> => {
       let attempts = 0;
-      const filePath = path.join(this.filePath.slice(0, -7), `${lang}.json`);
       const headers = {
         'Content-Type': 'application/json',
       };
@@ -190,6 +193,15 @@ class GenerateTranslations {
           const translations = this.extractJSON(
             response.data.candidates[0].content.parts[0].text.trim(),
           );
+          const fileName = `${lang}.json`;
+          if (fileName === path.basename(this.filePath)) {
+            logger.info(
+              `Skipping translation for ${lang}.json as it is the same as the base file.`,
+            );
+            return;
+          }
+          const directory = path.dirname(this.filePath);
+          const filePath = path.join(directory, fileName);
           fs.writeFileSync(filePath, JSON.stringify(translations, null, 2));
           logger.info(`${lang}.json generated successfully.`);
           return;
@@ -201,6 +213,7 @@ class GenerateTranslations {
                 (error as Error).message
               }`,
             );
+            await new Promise((resolve) => setTimeout(resolve, 3000));
           } else {
             logger.error(
               `Failed to generate ${lang}.json after ${maxRetries} attempts.`,

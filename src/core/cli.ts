@@ -94,6 +94,9 @@ class LangsourceCLI {
           if (!input) {
             return 'Please enter a valid path.';
           }
+          if (!input.endsWith('.json')) {
+            return 'Please enter a valid JSON file.';
+          }
           if (!fs.existsSync(input)) {
             return 'The specified path does not exist.';
           }
@@ -189,17 +192,21 @@ class LangsourceCLI {
         .description('Generate translations for supported languages')
         .alias('g')
         .action(async () => {
-          console.log(
-            figlet.textSync('langsource', {
-              font: 'Swamp Land',
-              horizontalLayout: 'full',
-            }),
-          );
-          await this.getLLMKey();
-          const languages = await this.selectLanguages();
-          const path = await this.getPath();
-          const generateTranslations = new GenerateTranslations(path);
-          await generateTranslations.generateTranslations(languages);
+          try {
+            console.log(
+              figlet.textSync('langsource', {
+                font: 'Swamp Land',
+                horizontalLayout: 'full',
+              }),
+            );
+            await this.getLLMKey();
+            const languages = await this.selectLanguages();
+            const path = await this.getPath();
+            const generateTranslations = new GenerateTranslations(path);
+            await generateTranslations.generateTranslations(languages);
+          } catch (error) {
+            logger.error((error as Error).message);
+          }
         });
 
       this.process.parse(process.argv);
